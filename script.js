@@ -42,7 +42,7 @@ canevas.selectAll("rect")
     .attr("y", 50)
     .attr("x", 50)
     .attr("width", 20)
-    .attr("height", d => d)
+    .attr("height", 20)
     .style('fill','lightgreen')
     .style('stroke','green');
 
