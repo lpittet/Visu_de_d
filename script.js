@@ -20,38 +20,39 @@
     console.log("Empan",empan_divorces);
   })
 
-  var svg = d3.select("svg"),
-      margin = 200,
-      width = svg.attr("width") - margin,
-      height = svg.attr("height") - margin;
+  // ICICICICICICICICI
+  // var svg = d3.select("svg"),
+  //     margin = 200,
+  //     width = svg.attr("width") - margin,
+  //     height = svg.attr("height") - margin;
   
-  var xScale = d3.scaleBand().range([0,width]).padding(0.4),
-      yScale = d3.scaleLinear().range([height,0]);
+  // var xScale = d3.scaleBand().range([0,width]).padding(0.4),
+  //     yScale = d3.scaleLinear().range([height,0]);
   
-  var g = svg.append("g")
-              .attr("transform","translate("+100 +"," + 100 +")");
-  d3.csv("Divorces_totaux.csv",function(error,data){
-    if (error) {
-      throw error;
-    }  
+  // var g = svg.append("g")
+  //             .attr("transform","translate("+100 +"," + 100 +")");
+  // d3.csv("Divorces_totaux.csv",function(error,data){
+  //   if (error) {
+  //     throw error;
+  //   }  
     
-    xScale.domain(data.map(function(d){return d.annees;}));
-    yScale.domain([0,d3.max(data,function(d){return d.divorces;})]);
+  //   xScale.domain(data.map(function(d){return d.annees;}));
+  //   yScale.domain([0,d3.max(data,function(d){return d.divorces;})]);
 
-    g.append("g")
-      .attr("transform","translate(0,"+ height + ")")
-      .call(d3.axisBottom(xScale));
-    g.append("g")
-      .call(d3.axisLeft(yScale).tickFormat(function(d){
-        return "$" + d;
-      }),ticks(10))
-      .append("text")
-      .attr("y",6)
-      .attr("dy","0.71em")
-      .attr("text-anchor","end")
-      .text("value");
-    });
-  
+  //   g.append("g")
+  //     .attr("transform","translate(0,"+ height + ")")
+  //     .call(d3.axisBottom(xScale));
+  //   g.append("g")
+  //     .call(d3.axisLeft(yScale).tickFormat(function(d){
+  //       return "$" + d;
+  //     }),ticks(10))
+  //     .append("text")
+  //     .attr("y",6)
+  //     .attr("dy","0.71em")
+  //     .attr("text-anchor","end")
+  //     .text("value");
+  //   });
+  // ICICICICICICIICICIC
 //   let canevas = d3.select("body").append("svg")
 //     .attr("width", 9600)
 //     .attr("height", 30000)
@@ -66,4 +67,47 @@
 //      .attr("height", 60)
 //      .style('fill','lightgreen')
 //      .style('stroke','green');
-  
+
+var svg = d3.select('svg');
+
+var width = +svg.attr('width');
+var height = +svg.attr('height');
+
+const render = data => {
+
+    const margin = {top: 20, right: 50, bottom: 20, left: 50};
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const xScale = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d.divorces)])
+      .range([0, innerWidth]);
+
+    //const yAxis = d3.
+      
+    const yScale = d3.scaleBand()
+      .domain(data.map(d => d.annees))
+      .range([0, innerHeight])
+      .padding(0.1); 
+
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+    
+    g.append('g').call(d3.axisLeft(yScale));
+    g.append('g').call(d3.axisBottom(xScale))
+      .attr('transform', `translate(0,${innerHeight})`);  
+    
+    g.selectAll('rect').data(data)
+      .enter().append('rect')
+        .attr('y', d => yScale(d.annees))
+        .attr('width', d => xScale(d.divorces))
+        .attr('height', yScale.bandwidth());
+};
+
+d3.csv('Divorces_totaux.csv').then(data => {
+  data.forEach(d => {
+    d.annees = +d.annees;
+    d.divorces = +d.divorces;
+  })
+  render(data);
+});
