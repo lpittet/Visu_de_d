@@ -7,17 +7,22 @@
 //     return data
     
 // })
-  let data = d3.csv('Divorces_totaux.csv',function(d){
+  let data = d3.csv('Mariages_Divorces.csv',function(d){
     return {
-      annees : d.annees, 
+      annee : d.annee, 
+      mariages : +d.mariages,
       divorces : +d.divorces,
     }
   }) 
   .then(data => {
-    console.log("Divorces",data);
+    console.log("Mariages_Divorces",data);
 
     let empan_divorces = d3.extent(data, d => d.divorces) // [valeur_min,valeur_max]
-    console.log("Empan",empan_divorces);
+    console.log("Empan_d",empan_divorces);
+
+    let empan_mariages = d3.extent(data, d => d.mariages) // [valeur_min,valeur_max]
+    console.log("Empan_m",empan_mariages);    
+
   })
 
   // ICICICICICICICICI
@@ -80,7 +85,7 @@ const render = data => {
     const innerHeight = height - margin.top - margin.bottom;
 
     const xScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.divorces)])
+      .domain([0, d3.max(data, d => d.mariages)])
       .range([0, innerWidth]);
 
     //const yAxis = d3.
@@ -99,16 +104,25 @@ const render = data => {
     
     g.selectAll('rect').data(data)
       .enter().append('rect')
-        .attr('y', d => yScale(d.annees))
-        .attr('width', d => xScale(d.divorces))
-        .attr('height', yScale.bandwidth());
+        .attr('y', d => yScale(d.annee))
+        .attr('width', d => xScale(d.mariages))
+        .attr('height', yScale.bandwidth())
+        .style('fill','lightgreen')
+        .style('opacity',.5);
+
+    g.selectAll("circle").data(data)
+      .enter().append("circle")
+        .attr("cy", d => yScale(d.annees)+11.5)
+        .attr("cx", d => xScale(d.divorces))
+        .attr("r", yScale.bandwidth()/6)
+        .style('opacity',.3);
 
     /*
     svg.selectAll("div")
-    .data(annees)
+    .data(data)
     .enter()
     .append("div")
-    .text((d) => d)
+    .text((d) => d))
     .on("click", (e) => {
       let annee_choisie = e.target.innerText;
       // ceci vaut ma sélection de ligne
@@ -119,9 +133,10 @@ const render = data => {
     */
 };
 
-d3.csv('Divorces_totaux.csv').then(data => {
+d3.csv('Mariages_Divorces.csv').then(data => {
   data.forEach(d => {
-    d.annees = +d.annees;
+    d.annees = +d.annee;
+    d.mariages = +d.mariages;
     d.divorces = +d.divorces;
   })
   render(data);
