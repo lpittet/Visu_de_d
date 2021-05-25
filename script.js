@@ -102,6 +102,21 @@ const render = data => {
         .attr('y', d => yScale(d.annees))
         .attr('width', d => xScale(d.divorces))
         .attr('height', yScale.bandwidth());
+
+    /*
+    svg.selectAll("div")
+    .data(annees)
+    .enter()
+    .append("div")
+    .text((d) => d)
+    .on("click", (e) => {
+      let annee_choisie = e.target.innerText;
+      // ceci vaut ma sélection de ligne
+      // à mélanger avec https://codepen.io/isaacpante/pen/ZEeyeLo?editors=0010
+      // regénérer ce qui change
+    });
+    
+    */
 };
 
 d3.csv('Divorces_totaux.csv').then(data => {
