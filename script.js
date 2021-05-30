@@ -84,16 +84,14 @@ const render = data => {
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    const xScale = d3.scaleLinear()
-      .domain([-d3.max(data, d => d.divorces), d3.max(data, d => d.mariages)])
-      .range([0, innerWidth]);
-
-    //const yAxis = d3.
-      
-    const yScale = d3.scaleBand()
+    const xScale = d3.scaleBand()
       .domain(data.map(d => d.annees))
-      .range([0, innerHeight])
+      .range([0, innerWidth])
       .padding(0.1); 
+
+    const yScale = d3.scaleLinear()
+      .domain([d3.max(data, d => d.mariages), 0])
+      .range([0, innerHeight]);
 
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
@@ -104,18 +102,18 @@ const render = data => {
     
     g.selectAll('rect').data(data)
       .enter().append('rect')
-        .attr('x', d => xScale(0))
-        .attr('y', d => yScale(d.annee))
-        .attr('width', d => xScale(d.mariages)-xScale(1000))
-        .attr('height', yScale.bandwidth())
+        .attr('y', d => yScale(d.mariages))
+        .attr('x', d => xScale(d.annee))
+        .attr('height', d => innerHeight-yScale(d.mariages))
+        .attr('width', xScale.bandwidth())
         .style('fill','lightgreen')
         .style('opacity',.5);
 
     g.selectAll("circle").data(data)
       .enter().append("circle")
-        .attr("cy", d => yScale(d.annees)+11.5)
-        .attr("cx", d => xScale(-d.divorces))
-        .attr("r", yScale.bandwidth()/6)
+        .attr("cy", d => yScale(d.divorces))
+        .attr("cx", d => xScale(d.annee)+19)
+        .attr("r", 5)
         .style('opacity',.3);
 
     /*
