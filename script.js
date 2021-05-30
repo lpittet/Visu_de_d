@@ -48,7 +48,8 @@ function renderTotal(data) {
     .attr("cy", d => yScale(d.divorces))
     .attr("cx", d => xScale(d.annee)+19)
     .attr("r", 5)
-    .style('opacity',.3);
+    .style('fill','orange')
+    .style('opacity',.6);
 };
 
 function renderYear(yearData) {
