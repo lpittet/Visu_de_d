@@ -85,7 +85,7 @@ const render = data => {
     const innerHeight = height - margin.top - margin.bottom;
 
     const xScale = d3.scaleLinear()
-      .domain([0, d3.max(data, d => d.mariages)])
+      .domain([-d3.max(data, d => d.divorces), d3.max(data, d => d.mariages)])
       .range([0, innerWidth]);
 
     //const yAxis = d3.
@@ -104,8 +104,9 @@ const render = data => {
     
     g.selectAll('rect').data(data)
       .enter().append('rect')
+        .attr('x', d => xScale(0))
         .attr('y', d => yScale(d.annee))
-        .attr('width', d => xScale(d.mariages))
+        .attr('width', d => xScale(d.mariages)-xScale(1000))
         .attr('height', yScale.bandwidth())
         .style('fill','lightgreen')
         .style('opacity',.5);
@@ -113,7 +114,7 @@ const render = data => {
     g.selectAll("circle").data(data)
       .enter().append("circle")
         .attr("cy", d => yScale(d.annees)+11.5)
-        .attr("cx", d => xScale(d.divorces))
+        .attr("cx", d => xScale(-d.divorces))
         .attr("r", yScale.bandwidth()/6)
         .style('opacity',.3);
 
