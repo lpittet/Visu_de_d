@@ -5,7 +5,7 @@ var height = +svg.attr('height');
 
 function renderTotal(data) {
   document.getElementsByTagName('svg')[0].innerHTML = ""
-  const margin = {top: 20, right: 50, bottom: 20, left: 50};
+  const margin = {top: 50, right: 50, bottom: 20, left: 50};
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
   
@@ -18,6 +18,15 @@ function renderTotal(data) {
     .domain([d3.max(data, d => d.mariages), 0])
     .range([0, innerHeight]);
   
+  svg.append("text")
+    .attr("x", width / 2)          
+    .attr("y", margin.top / 2)
+    .attr("text-anchor", "middle")  
+    .style("font-size", "20px") 
+    .style("font-weight", "bold") 
+    .style("text-decoration", "underline")  
+    .text("Visualisation globale");
+
   const g = svg.append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
   
@@ -55,7 +64,7 @@ function renderYear(yearData) {
   ]
   
   document.getElementsByTagName('svg')[0].innerHTML = ""
-  const margin = {top: 20, right: 50, bottom: 20, left: 50};
+  const margin = {top: 50, right: 50, bottom: 20, left: 50};
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
   const xScale = d3.scaleBand()
@@ -67,6 +76,15 @@ function renderYear(yearData) {
     .domain([Math.max.apply(Math, graphData.map(x => x.value)), 0])
     .range([0, innerHeight]);
   
+  svg.append("text")
+    .attr("x", width / 2)             
+    .attr("y", margin.top / 2)
+    .attr("text-anchor", "middle")  
+    .style("font-size", "20px") 
+    .style("font-weight", "bold") 
+    .style("text-decoration", "underline")  
+    .text("Mariages vs. Divorces en " + yearData.annee);
+
   const g = svg.append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
   
