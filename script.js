@@ -101,6 +101,18 @@ function renderYear(yearData) {
     .attr('width', xScale.bandwidth())
     .style('fill', d => d.title == "Mariages" ? 'lightgreen' : 'orange')
     .style('opacity',.5);
+
+  if (yearData.divorces == 0){
+  g.selectAll('text').data(data)
+    .enter().append('text')
+    .attr('x', width / 1.5)
+    .attr('y', height / 2.3)
+    .attr("text-anchor", "middle")  
+    .style("font-size", "18px") 
+    .style('fill', 'orange')
+    .style('opacity',.5)
+    .text("Données non disponibles pour les divorces")
+  };
 }
 
 async function loadData() {
