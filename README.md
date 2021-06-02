@@ -10,6 +10,8 @@ Il s'agit d'un histogramme permettant de comparer le nombre de mariages au nombr
 
 Le tout est complété par une visualisation globale, incluant toutes les années mesurées (les points oranges représentant les divorces).
 
+<img width="680" alt="Capture d’écran 2021-06-02 à 16 28 53" src="https://user-images.githubusercontent.com/81432942/120498651-acc9ac80-c3bf-11eb-806e-14439727a93a.png">
+
 La visualisation est en outre dotée de deux boutons, dont un déroulant permettant de choisir l'année désirée par l'utilisateur, et l'autre permettant d'accéder à la visualisation globale par un simple clic.
 
 ## Sources des données
