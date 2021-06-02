@@ -1,8 +1,21 @@
-# Visu_de_d
+# Maritalité et divorcialité en Suisse à travers le temps
 
-Ceci est un Github de présentation de projet dans le cadre du cours "Visualisation de données" de l'Université de Lausanne.
-Saluuuuuuut
+## Description
 
-## salut
-### yolo (Camila)
+Ceci est un Github de présentation de projet dans le cadre du cours "Visualisation de données" de l'Université de Lausanne, donné par M. Isaac Pante.
+
+Il s'agit d'un histogramme permettant de comparer le nombre de mariages au nombre de divorces en Suisse. La mesure est effectuée par tracnhes de 10 ans, du début du XIXème au début du XXIème siècle. L'axe des abscissess correspond aux 2 variables, soit les mariages en vert et les divorces en orange. Quant à l'axe des ordonnées, il correspond aux valeurs mesurées, avec une échelle qui s'adapte en fonction des années. Ceci afin de pouvoir distinguer nettement la part de divorcialité vis-à-vis de la maritalité.
+
+Le tout est complété par une visualisation globale, incluant toutes les années mesurées (les points oranges représentant les divorces).
+
+La visualisation est en outre dotée de deux boutons, dont un déroulant permettant de choisir l'année désirée par l'utilisateur, et l'autre permettant d'accéder à la visualisation globale par un simple clic.
+
+## Sources des données
+
+Toutes les données de cette visualisation proviennent du site de l'Office fédéral de la statistique.
+
+## Outils
+
+Ce projet a été généré en utilisant la librairie D3 et l'environnement de codage était composé comme suit : Visual Studio Code et Github Desktop.
+
 
