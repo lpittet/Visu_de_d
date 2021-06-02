@@ -16,7 +16,7 @@ La visualisation est en outre dotée de deux boutons, dont un déroulant permett
 
 ## Sources des données
 
-Toutes les données de cette visualisation proviennent du site de l'Office fédéral de la statistique.
+Toutes les données de cette visualisation proviennent du site de l'Office fédéral de la statistique de la Confédération helvétique.
 
 ## Outils
 
