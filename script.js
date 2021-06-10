@@ -84,7 +84,7 @@ function renderYear(yearData) {
     .style("font-size", "20px") 
     .style("font-weight", "bold") 
     .style("text-decoration", "underline")  
-    .text("Mariages vs. Divorces en " + yearData.annee);
+    .text("Mariages vs. Divorces en Suisse en " + yearData.annee);
 
   const g = svg.append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
