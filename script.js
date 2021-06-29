@@ -111,7 +111,7 @@ function renderYear(yearData) {
     .style("font-size", "18px") 
     .style('fill', 'orange')
     .style('opacity',.5)
-    .text("Données non disponibles pour les divorces")
+    .text("Divorce légal en Suisse depuis 1874")
   };
 }
 
