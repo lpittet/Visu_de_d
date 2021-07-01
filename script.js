@@ -128,12 +128,12 @@ async function loadData() {
 
 function addSelectValues(data) {
   var select = document.getElementById('year-select');
-  let selector = data.map(x => x.annee);
+  let selector = ["Choisir une année", ...data.map(x => x.annee)];
   for (let i = 0; i < selector.length; i++) {
     var opt = document.createElement('option');
     opt.appendChild(document.createTextNode(selector[i]) );
     opt.value = selector[i];
-    if (i == 0) {
+    if (i == 1) {
       opt.selected = true;
     }
     select.append(opt);
@@ -143,11 +143,15 @@ function addSelectValues(data) {
 function reloadGraph() {
   const select = document.getElementById('year-select');
   const value = select.value;
-  const d = data.filter(x => x.annee == value)[0];
-  renderYear(d);
+  if (!["Choisir une année"].includes(value)) {
+    const d = data.filter(x => x.annee == value)[0];
+    renderYear(d);
+  }
 }
 
 function showTotalGraph() {
+  const select = document.getElementById('year-select');
+  select.selectedIndex = 0;
   renderTotal(data);
 }
 

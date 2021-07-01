@@ -11,7 +11,7 @@
 <body>
   <div class="d-flex flex-column align-items-center h-100">
     <svg width ="1000" height ="600"></svg>
-    <form>
+    <form class="mt-2">
       <div class="d-flex flex-row align-items-center form-group">
         <label class="mr-3" for="Year">Année</label>
         <select name="Year" class="form-control" id="year-select" onchange="reloadGraph()"></select>
@@ -20,10 +20,9 @@
     </form>
   </div>
   <script src="script.js"></script>
-  <main>
-    <p></p>
+  <main class="mt-2 mx-4">
     <h1>Contexte</h1>
-    <p>La visualisation que nous vous proposons permet de comparer le nombre de mariages au nombre de divorces en Suisse. 
+    <p class="text-justify">La visualisation que nous vous proposons permet de comparer le nombre de mariages au nombre de divorces en Suisse. 
       La mesure est effectuée par tranches de 10 ans, du début du XIXème au début du XXIème siècle. Les données pour les divorces ne sont disponibles que depuis la sélection "1880", 
       car la désunion civile d'un couple n'est reconnue en Suisse que depuis l'adoption de la <a href='https://swissvotes.ch/attachments/8119e9a002d27c2176d02358916934eb491c1ab11d0a7fd6e052e69d414c0793'>loi fédérale concernant l'état civil, la tenue des registres qui s'y rapportent et le mariage</a>, adoptée le 24 décembre 1874 par le Parlement suisse. 
       L'axe des abscisses correspond aux deux variables, soit les mariages en vert et les divorces en orange. 
